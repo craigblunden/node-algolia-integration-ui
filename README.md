@@ -9,7 +9,7 @@ Main goals:
 - The ability to intermittently update Algolia
 
 Todos:
-- Deploy app to Heroku/Netlify
+- Deploy app to Heroku/Netlify (with SSL)
 - Look for disabled products and remove from index
 - User Group capability (half baked in).
 - Build UI
