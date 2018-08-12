@@ -17,7 +17,7 @@ class App extends Component {
   fetchData() {
     // Make a request for a user with a given ID
     let that = this
-    axios.post('http://localhost:4000/api/send', {
+    axios.post('/api/send', {
       netoWebsiteURL: this.state.netoWebsiteURL,
       netoAPIUsername: this.state.netoAPIUsername,
       netoAPIKey: this.state.netoAPIKey,

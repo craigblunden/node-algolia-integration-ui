@@ -1,7 +1,7 @@
 const querystring = require('querystring');                                                                                                                                                                                                
 var axios = require('axios');
 
-require('dotenv').config()
+// require('dotenv').config()
 
 module.exports = {
 

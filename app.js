@@ -1,10 +1,16 @@
 var express = require('express');
 var algoliasearch = require('algoliasearch');
 var bodyParser = require('body-parser')
+var path = require('path')
 
 var fetch = require('./api-call');
 
 var app = express();
+
+// const port = process.env.PORT || 3000;
+
+// Serve any static files built by React
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // parse various different custom JSON types as JSON
 app.use(bodyParser.json({ type: 'application/*+json' }))
@@ -15,7 +21,7 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-require('dotenv').config()
+// require('dotenv').config()
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -24,11 +30,11 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function(req,res,next){
-  res.send("hi!")
-})
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 
-app.all('/api/send', jsonParser , function(req, res, next) {
+app.post('/api/send', jsonParser , function(req, res, next) {
 
     
   if (req.method === 'OPTIONS') {
@@ -103,4 +109,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(4000, () => console.log('Example app listening on port 4000!'))
+module.exports = app;
+
+// app.listen(4000, () => console.log('Example app listening on port 4000!'))

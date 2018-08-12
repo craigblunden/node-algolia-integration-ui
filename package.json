@@ -1,17 +1,16 @@
 {
-  "name": "node-algolia-integration",
-  "version": "0.1.0",
+  "name": "react-backend",
+  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "algoliasearch": "^3.30.0",
+    "axios": "^0.18.0",
+    "body-parser": "~1.16.0",
+    "debug": "~2.6.0",
+    "express": "~4.14.1",
+    "path": "^0.12.7"
   }
 }
