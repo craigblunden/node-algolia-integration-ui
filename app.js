@@ -18,38 +18,11 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 // create application/json parser
 var jsonParser = bodyParser.json()
 
-// create application/x-www-form-urlencoded parser
-// var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
-// require('dotenv').config()
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, X-Requested-With");
-  res.header("Access-Contrl-Allow-Methods", 'PUT, POST, GET, DELETE, OPTIONS');
-  next();
-});
-
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
 app.post('/api/send', jsonParser , function(req, res, next) {
-
-    
-  if (req.method === 'OPTIONS') {
-    console.log('!OPTIONS');
-    var headers = {};
-    // IE8 does not allow domains to be specified, just the *
-    // headers["Access-Control-Allow-Origin"] = req.headers.origin;
-    headers["Access-Control-Allow-Origin"] = "*";
-    headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
-    headers["Access-Control-Allow-Credentials"] = false;
-    headers["Access-Control-Max-Age"] = '86400'; // 24 hours
-    headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
-    res.writeHead(200, headers);
-    res.end();
-  } else {
 
     const {netoWebsiteURL, netoAPIUsername, netoAPIKey, algoliaAppID, algoliaAPIKey, algoliaIndex}  = req.body
 
@@ -73,7 +46,6 @@ app.post('/api/send', jsonParser , function(req, res, next) {
       // Update existing records
       // Add new records 
       // Remove old records
-
       
       if (response.data.Item.length < 1000){
         index.addObjects(sanitisedRecords);
@@ -87,8 +59,6 @@ app.post('/api/send', jsonParser , function(req, res, next) {
     .catch(function (error) {
       console.log(error);
     });
-
-  }
 });
 
 // catch 404 and forward to error handler
