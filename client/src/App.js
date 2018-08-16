@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+
+import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
 
 class App extends Component {
@@ -53,6 +55,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline />
         <form onSubmit={(e) => this.handleSubmit(e)} >
           <label>netoWebsiteURL</label>
           <input type="text" name="netoWebsiteURL" onChange={(e) => this.handleChange(e)} value={this.state.netoWebsiteURL}/>
