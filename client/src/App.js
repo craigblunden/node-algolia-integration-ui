@@ -103,6 +103,8 @@ class App extends React.Component {
   };
 
   fetchData() {
+
+    if( !this.state.netoWebsiteURL && !this.state.netoAPIUsername && !this.state.netoAPIKey && !this.state.algoliaAppID && !this.state.algoliaAPIKey && !this.state.algoliaIndex) return false
     // Make a request for a user with a given ID
     let that = this
     axios.post('/api/send', {
@@ -134,8 +136,9 @@ class App extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log("submit")
     e.preventDefault();
-    this.fetchData();
+    // this.fetchData();
   }
 
   handleDrawerOpen = () => {
@@ -198,27 +201,15 @@ class App extends React.Component {
           <div className={classes.toolbar} />
 
           <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
-          <form onSubmit={(e) => this.handleSubmit(e)} >
-          <label>netoWebsiteURL</label>
-          <input type="text" name="netoWebsiteURL" onChange={(e) => this.handleChange(e)} value={this.state.netoWebsiteURL}/>
-          <br />
-          <label>netoAPIUsername</label>
-          <input type="text" name="netoAPIUsername" onChange={(e) => this.handleChange(e)} value={this.state.netoAPIUsername}/>
-          <br />
-          <label>netoAPIKey</label>
-          <input type="text" name="netoAPIKey" onChange={(e) => this.handleChange(e)} value={this.state.netoAPIKey}/>
-          <br />
-          <label>algoliaAppID</label>
-          <input type="text" name="algoliaAppID" onChange={(e) => this.handleChange(e)} value={this.state.algoliaAppID}/>
-          <br />
-          <label>algoliaAPIKey</label>
-          <input type="text" name="algoliaAPIKey" onChange={(e) => this.handleChange(e)} value={this.state.algoliaAPIKey}/>
-          <br />
-          <label>algoliaIndex</label>
-          <input type="text" name="algoliaIndex" onChange={(e) => this.handleChange(e)} value={this.state.algoliaIndex}/>
-          <br />
-          <input type="submit" value="Submit" />
-        </form>
+          <Form 
+            onSubmit={this.handleSubmit}
+            netoWebsiteURL={this.state.netoWebsiteURL}
+            netoAPIUsername={this.state.netoAPIUsername}
+            netoAPIKey={this.state.netoAPIKey}
+            algoliaAppID={this.state.algoliaAppID}
+            algoliaAPIKey={this.state.algoliaAPIKey}
+            algoliaIndex={this.state.algoliaInde}
+          />
         <ul>
         {
           this.state.data.map(itm => <li key={itm.objectID}>{itm.Name}</li>)
